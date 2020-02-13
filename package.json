@@ -25,6 +25,9 @@
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/lucid": "^6.1.3"
   },
+  "resolutions": {
+    "knex": "^0.20.9"
+  },
   "devDependencies": {},
   "autoload": {
     "App": "./app"
