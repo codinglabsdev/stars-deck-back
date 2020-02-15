@@ -1,0 +1,53 @@
+EnvironmentConfigurationMetadata:
+  Description: Configuration created from the EB CLI using "eb config save".
+  DateCreated: '1581787337000'
+  DateModified: '1581787337000'
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:us-east-1::platform/Node.js running on 64bit Amazon Linux/4.13.0
+OptionSettings:
+  aws:elasticbeanstalk:command:
+    BatchSize: '30'
+    BatchSizeType: Percentage
+  aws:elb:policies:
+    ConnectionDrainingEnabled: true
+  aws:elasticbeanstalk:application:environment:
+    ENV_SILENT: true
+    HASH_DRIVER: bcrypt
+    CACHE_VIEWS: false
+    APP_NAME: StarsDeck
+    DB_CONNECTION: pg
+    HOST: 127.0.0.1
+    NODE_ENV: production
+    APP_KEY: x1eQC2btOhu3aWYtyUGE7e7ofIpDn5jV
+  aws:elb:loadbalancer:
+    CrossZone: true
+  aws:elasticbeanstalk:environment:
+    ServiceRole: arn:aws:iam::042822862645:role/aws-elasticbeanstalk-service-role
+    LoadBalancerType: application
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:elbv2:listener:443:
+    ListenerEnabled: true
+    SSLPolicy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
+    SSLCertificateArns: arn:aws:acm:us-east-1:042822862645:certificate/bf530955-2490-419f-b398-8de78d5cf4f4
+    DefaultProcess: default
+    Protocol: HTTPS
+    Rules: ''
+  aws:autoscaling:launchconfiguration:
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+    EC2KeyName: aws-eb
+  aws:rds:dbinstance:
+    DBPassword: starsdeck
+    DBEngine: postgres
+    DBUser: starsdeck
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateType: Health
+    RollingUpdateEnabled: true
+EnvironmentTier:
+  Type: Standard
+  Name: WebServer
+Extensions:
+  RDS.EBConsoleSnippet:
+    Order: null
+    SourceLocation: https://s3.amazonaws.com/elasticbeanstalk-env-resources-us-east-1/eb_snippets/rds/rds.json
+AWSConfigurationTemplateVersion: 1.1.0.0

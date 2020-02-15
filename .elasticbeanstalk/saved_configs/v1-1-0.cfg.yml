@@ -1,0 +1,50 @@
+AWSConfigurationTemplateVersion: 1.1.0.0
+EnvironmentConfigurationMetadata:
+  DateCreated: '1581740320000'
+  DateModified: '1581787918160'
+  Description: Configuration created from the EB CLI using "eb config save".
+EnvironmentTier:
+  Name: WebServer
+  Type: Standard
+OptionSettings:
+  aws:autoscaling:launchconfiguration:
+    EC2KeyName: aws-eb
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: true
+    RollingUpdateType: Health
+  aws:elasticbeanstalk:application:environment:
+    APP_KEY: x1eQC2btOhu3aWYtyUGE7e7ofIpDn5jV
+    APP_NAME: StarsDeck
+    CACHE_VIEWS: false
+    DB_CONNECTION: pg
+    ENV_SILENT: true
+    HASH_DRIVER: bcrypt
+    HOST: 127.0.0.1
+    NODE_ENV: production
+    RDS_DB_NAME: ebdb
+    RDS_HOSTNAME: starsdeck.cluster-ccwepzwhpb11.us-east-1.rds.amazonaws.com
+    RDS_PASSWORD: starsdeck
+    RDS_USERNAME: starsdeck
+  aws:elasticbeanstalk:command:
+    BatchSize: '30'
+    BatchSizeType: Percentage
+  aws:elasticbeanstalk:environment:
+    LoadBalancerType: application
+    ServiceRole: arn:aws:iam::042822862645:role/aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:elb:loadbalancer:
+    CrossZone: true
+  aws:elb:policies:
+    ConnectionDrainingEnabled: true
+  aws:elbv2:listener:443:
+    DefaultProcess: default
+    ListenerEnabled: true
+    Protocol: HTTPS
+    Rules: ''
+    SSLCertificateArns: arn:aws:acm:us-east-1:042822862645:certificate/bf530955-2490-419f-b398-8de78d5cf4f4
+    SSLPolicy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:us-east-1::platform/Node.js running on 64bit
+    Amazon Linux/4.13.0
