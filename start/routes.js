@@ -24,4 +24,7 @@ Route.resource("users", "UserController")
 
 Route.resource("events", "EventController")
   .apiOnly()
-  .except(["index", "show", "delete"]);
+  .except(["index", "show", "delete"])
+  .middleware(new Map([[["store", "update", "delete"], ["auth"]]]));
+
+Route.post("sessions", "SessionController.store");

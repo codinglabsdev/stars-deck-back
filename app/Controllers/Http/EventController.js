@@ -4,16 +4,10 @@ const Event = use("App/Models/Event");
 const User = use("App/Models/User");
 
 class EventController {
-  async store({ request }) {
-    const {
-      type,
-      date,
-      title,
-      description,
-      location,
-      url,
-      user: user_id
-    } = request.all();
+  async store({ request, auth }) {
+    const { type, date, title, description, location, url } = request.all();
+
+    const user_id = await auth.user.id;
 
     const event = await Event.create({
       type,
