@@ -35,10 +35,15 @@ class UserController {
   }
 
   async show({ params }) {
-    return await User.query()
-      .where("username", params.id)
+    const users = await User.query()
+      .orderBy("points", "DESC")
       .with("events", query => query.select().orderBy("date", "DESC"))
-      .firstOrFail();
+      .fetch();
+
+    const usersJSON = users.toJSON();
+
+    return usersJSON.find(({ username }) => username === params.id);
+
   }
 }
 

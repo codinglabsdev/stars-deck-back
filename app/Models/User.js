@@ -20,20 +20,9 @@ class User extends Model {
       }
     });
 
-    this.addHook("afterFind", "RankingHook.setPosition");
-    // this.addHook("afterFetch", "RankingHook.setPosition");
+    this.addHook("afterFetch", "RankingHook.setPosition");
   }
 
-  /**
-   * A relationship on tokens is required for auth to
-   * work. Since features like `refreshTokens` or
-   * `rememberToken` will be saved inside the
-   * tokens table.
-   *
-   * @method tokens
-   *
-   * @return {Object}
-   */
   tokens() {
     return this.hasMany("App/Models/Token");
   }
