@@ -1,4 +1,6 @@
 branch-defaults:
+  develop:
+    environment: dev-1-1-0
   master:
     environment: dev-1-1-0
     group_suffix: null

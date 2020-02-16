@@ -20,11 +20,14 @@ Route.get("/ranking", "RankingController.index");
 
 Route.resource("users", "UserController")
   .apiOnly()
-  .except(["index", "delete"]);
+  .except(["index", "delete"])
+  .middleware(new Map([[["update", "delete"], ["auth"]]]))
+  .validator(new Map([[["store"], ["User"]]]));
 
 Route.resource("events", "EventController")
   .apiOnly()
   .except(["index", "show", "delete"])
-  .middleware(new Map([[["store", "update", "delete"], ["auth"]]]));
+  .middleware(new Map([[["store", "update", "delete"], ["auth"]]]))
+  .validator(new Map([[["store"], ["Event"]]]));
 
-Route.post("sessions", "SessionController.store");
+Route.post("sessions", "SessionController.store").validator("Session");

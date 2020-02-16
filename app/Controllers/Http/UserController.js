@@ -29,12 +29,13 @@ class UserController {
     } catch (error) {
       if (error.response.status === 404)
         return response.status(404).json({
-          error: { message: "Github username not found" }
+          field: "username",
+          message: "Github username not found"
         });
     }
   }
 
-  async show({ params }) {
+  async show({ params, response }) {
     const users = await User.query()
       .orderBy("points", "DESC")
       .with("events", query => query.select().orderBy("date", "DESC"))
@@ -42,8 +43,12 @@ class UserController {
 
     const usersJSON = users.toJSON();
 
-    return usersJSON.find(({ username }) => username === params.id);
+    const user = usersJSON.find(({ username }) => username === params.id);
 
+    if (!user) {
+      return response.redirect(404, "../");
+    }
+    return user;
   }
 }
 
